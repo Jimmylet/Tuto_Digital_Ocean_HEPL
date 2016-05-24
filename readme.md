@@ -44,7 +44,7 @@ Une fois votre droplet créer, vous avez reçu un mail avec un nom d'utilisateur
 
 Pour cette partie, cliquez sur " More ", à droite du nom de votre droplet et sélectionnez " Add a domain ". Dans le champ adéquat, inscrivez-y votre nom de domaine (ex: letecheur.me). Vous allez arriver sur une page, où il sera inscrit " Select Record Type ". 
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt1.png)
+![](imgdo/capt1.png)
 
 C'est sur cette page-ci que vous allez configurer tout ce qui se rapporte à votre nom de domaine, au réseau, etc.
 
@@ -54,7 +54,7 @@ Maintenant, il reste à associer quelques éléments supplémentaires, dont nous
 
 La première est d'ordre ergonomique. On a l'habitude d'écrire "www.nomdedomaine.com", mais ici le site ne sera accessible que par nomdedomaine.com. Pour palier à cet effet, on va créer un A-name avec "www". 
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt2.png)
+![](/imgdo/capt2.png)
 
 Lorsque notre serveur web sera en place, on pourra donc écrire *letecheur.me* ou *www.letecheur.me* !  
 Vous pourriez aussi imaginer mettre "wwww" devant, pour pallier à la faute de frappe d'un utilisateur.
@@ -71,7 +71,7 @@ Pour les configurations mail, on verra plus tard…
 ou
 `Ping votrenomdedomaine`
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt3.png)
+![](imgdo/capt3.png)
 
 Faite CTRL + C pour arrêter le ping. Si les paquets ont été reçus, c'est ok !
 
@@ -94,7 +94,7 @@ Pour Windows, vous aurez besoin d'installer [Putty](http://www.putty.org/), un c
 5.  Donnez un nouveau mot de passe ( **ET NOTEZ LE QUELQUE PART !** )
 6.  Répetez votre nouveau mot de passe ( **ET VRAIMENT, NOTEZ-LE QUELQUE PART !** )
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt4.png)
+![](imgdo/capt4.png)
 
 Vous êtes maintenant connectez en SSH. Vous pouvez passer à l'étape suivante.
 
