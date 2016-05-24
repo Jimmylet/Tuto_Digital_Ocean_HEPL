@@ -163,7 +163,7 @@ Si vous voyez `Started` sur la dernière ligne, c'est que c'est bon.
 	- **Username :** root
 	- **Password :** admin
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt5.png)
+![]((imgdo/capt5.png))
 
 - La première chose à faire est de changer le mot de passe par défaut. Cliquez sur Password en haut à gauche. Donnez l'ancien mot de passe dans `old password` et tapez le nouveau dans les champs suivants.
 
@@ -183,7 +183,7 @@ Si MYSQL vous demande des mots de passe, vous pouvez simplement appuyer sur ente
 
 Une fois qu'AJENTI aura redémarré, vous verrez une section WEB dans votre dashboard. 
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt6.png)
+![]((imgdo/capt6.png))
 
 ## Installer un site web sur son serveur ( ENFIN !!! )
 
@@ -191,11 +191,11 @@ Pour commencer, on va avoir besoins de retourner dans le point 4 **Configurer la
 
 On va ajouter un MX pour les mails 
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt7.png)
+![]((imgdo/capt7.png))
 
 Et un TXT Record
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt8.png)
+![]((imgdo/capt8.png))
 
 Remplacer les champs temporaire par les bonnes valeurs.
 
@@ -251,7 +251,7 @@ Je ne connais pas la méthode et je ne l'ai jamais testée. Je vous renvoie vers
 - Cliquez sur SFTP
 - Cliquez sur "Ajouter une clé" et selectionnez votre clé privée ssh. Filezilla peu vous demander de convertir votre clé, acceptez.
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt9.png)
+![]((imgdo/capt9.png))
 
 - Ensuite allez dans "Fichier -> Gestionnaire de sites".
 - Ajouter un nouveau site, dans "Hôte", indiquez votre nom de domaine ou l'adresse IP de votre serveur.
@@ -310,11 +310,11 @@ Entrez une nouvelle entrée TXT à nouveau :
 
 Normalement, vous êtes bon ! Dans la "zone file" sur DigitalOcean, vous devriez voir un résumé de vos entrées. 
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt10.png)
+![]((imgdo/capt10.png))
 
 Dans "Ajenti", vous devriez voir ceci, si ce n'est pas mit, relancer Ajenti. Si ce n'est toujours pas mit, écrivez le vous même.
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt11.png)
+![]((imgdo/capt11.png))
 
 ---
 
@@ -322,7 +322,7 @@ Et voilà, vous pouvez a présent envoyer des mails sur Gmail, Yahoo… et vos d
 
 Tester à nouveau votre adresse email avec MailTester. Votre code à du augmenté si vous avez bien suivi les étapes. Si vous avez un score de 7/10, c'est tout bon ! Admirez le mien :
 
-![](/Users/jimmy/Dropbox/Notes/Divers/imgdo/capt12.png)
+![]((imgdo/capt12.png))
 
 ---
 
