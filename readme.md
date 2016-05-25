@@ -391,7 +391,7 @@ Attendez un peu que l'opération se fasse. Rafraichissez et vous devriez voir vo
 
 ---
 
-J'espère que ce tuto vous a aidé ! C'est un peu long, mais c'est efficace. Maintenant, reste plus qu'à y placer vos sites web. Petite remarque, Wordpress utilise de basses Apache, et comme vous avez pu le voir, nous, c'est NGINX. 
+J'espère que ce tuto vous a aidé ! C'est un peu long, mais c'est efficace. Maintenant, reste plus qu'à y placer vos sites web. Petite remarque, Wordpress utilise de base Apache, et comme vous avez pu le voir, nous, c'est NGINX. 
 
 DigitalOcean a fait un bon tuto résumant l'installation de Wordpress sur Ajenti :
 https://www.digitalocean.com/community/tutorials/installing-wordpress-on-ajenti-v
