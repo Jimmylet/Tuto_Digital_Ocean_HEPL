@@ -146,7 +146,7 @@ Ajenti V est un gestionnaire de contrôle qui va vous permettre de gérer votre 
 `wget http://repo.ajenti.org/debian/key -O- | sudo apt-key add -`
 
 3. Ajouter le repo à notre liste de sources : 
-`echo « deb http://repo.ajenti.org/ng/debian main main ubuntu » | sudo tee -a /etc/apt/sources.list`
+`echo "deb http://repo.ajenti.org/ng/debian main main ubuntu" | sudo tee -a /etc/apt/sources.list`
 4. Lancer le processus d’installation   
 `sudo apt-get update && sudo apt-get install ajenti`  
 Tappez Y peut ENTRER. L’opération d’installation peut prendre plusieurs minutes.
@@ -237,7 +237,7 @@ La prochaine étape est de placer la clé publique sur le serveur.
 Pour avoir plus simple, on va avoir besoins d’utiliser le script ssh-copy-id.  
 
 Installer Homebrew avec le code suivant 
-`/usr/bin/ruby -e « $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install) »`
+`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
 Ensuite, tapez dans le terminal : `brew install ssh-copy-id`
 
@@ -306,16 +306,16 @@ Maintenant, ajoutez votre adresse mail à votre client mail. Voici les informati
 Maintenant que cela est fait, retourner à l’étape 4 et inscrivez comme TXT, ceci :
 
 - Dans « Enter name » tapez `@`
-- Dans « Text » entrez `« v=spf1 a ip4:VOTRE_ADRESSE_IP ~all »`
+- Dans « Text » entrez `"v=spf1 a ip4:VOTRE_ADRESSE_IP ~all"`
 
 Entrez une nouvelle entrée TXT à nouveau :
 - Dans « Enter name » entrez `mail._domainkey`
 - Dans « Text » entrez la clé obtenue dans Ajenti, quand vous avez fait générer le certificat. Ça doit ressembler à ceci
-`mail._domainkey	10800 IN TXT « v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQE(...) »`
+`mail._domainkey	10800 IN TXT "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQE(...)"`
 - Ne prenez que la partie v=DKIM1 et la suite, avec les guillemets
 
 - Ensuite, faites à nouveau l’opération. Dans "Enter Name" entrez `_dmarc.votrenomdedomaine` 
-- Dans « Text », entrez `« v=DMARC1; p=none; rua=mailto:VOTREEMAIL »`
+- Dans « Text », entrez `"v=DMARC1; p=none; rua=mailto:VOTREEMAIL"`
 
 Normalement, vous êtes bon ! Dans la « zone file » sur DigitalOcean, vous devriez voir un résumé de vos entrées. 
 
@@ -404,7 +404,7 @@ Pour ce faire, connectez-vous avec l’utilisateur root. Si vous ne lui avez pas
 - Tappez cette commande `sudo mysqld --skip-grant-tables &`
 - Loggez-vous en root `mysql -u root mysql`
 - Mettez a jour votre mot de passe en changeant YOURNEWPASSWORD par votre mot de passe 
-`UPDATE user SET Password=PASSWORD(« YOURNEWPASSWORD ») WHERE User='root »; FLUSH PRIVILEGES; exit;`
+`UPDATE user SET Password=PASSWORD("YOURNEWPASSWORD") WHERE User='root '; FLUSH PRIVILEGES; exit;`
 
 Voilà, vous pouvez vous connecter en root.
 
