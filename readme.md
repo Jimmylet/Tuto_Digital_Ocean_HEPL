@@ -61,6 +61,9 @@ Vous pourriez aussi imaginer mettre "wwww" devant, pour pallier à la faute de f
 
 Ensuite, créer un autre A-name, un **panel** qui servira à l'installation d'Ajenti, un gestionnaire de serveur (et de site web) qui se gère à la souris (youpi!).
 
+![](/imgdo/capt13.png)
+
+
 Pour les configurations mail, on verra plus tard…
 
 ## Étape 5 - Tester si votre serveur vous reçoit.
@@ -177,6 +180,8 @@ Pour installer le plugin qui permettra à Ajenti d'installer et de lire des site
 
 - `apt-get install ajenti-v ajenti-v-nginx ajenti-v-mysql ajenti-v-php-fpm ajenti-v-mail ajenti-v-nodejs php5-mysql`
 
+Vous allez avoir des alertes, appuyez sur "Yes" et enter.
+
 Ça va installer le serveur web **NGINX** (et non Apache, d'après mes recherches, NGINX est performant sur le front-end qu'Apache). Ajenti ne fonctionne qu'avec NGINX. La commande va aussi installer **MYSQL**, **PHP**, un serveur mail, **NODE.JS**,…
 
 Si MYSQL vous demande des mots de passe, vous pouvez simplement appuyer sur enter à plusieurs reprises. Une fois le tout installé, redémarrez AJENTI.
@@ -187,9 +192,9 @@ Une fois qu'AJENTI aura redémarré, vous verrez une section WEB dans votre dash
 
 ## Installer un site web sur son serveur ( ENFIN !!! )
 
-Pour commencer, on va avoir besoins de retourner dans le point 4 **Configurer la partie réseau de son serveur**
+Pour commencer, on va avoir besoins de retourner dans le point 4 **Configurer la partie réseau de son serveur**. Pour cela, allez à l'accueil de DigitalOcean. Sur votre Droplet, cliquez à gauche sur "More" puis "Add a domain". Ensuite, cliquez sur la loupe à coter de votre nom de domaine.
 
-On va ajouter un MX pour les mails 
+On va ajouter un MX pour les mails. **Notez bien que votre nom de domaine doit se terminer par un point comme sur l'image**
 
 ![](imgdo/capt7.png)
 
@@ -203,7 +208,7 @@ Remplacer les champs temporaire par les bonnes valeurs.
 
 Sur Ajenti, entrez dans la section *Web*. Cliquez sur *Website*. Cliquez sur *Activer*. Dans "New Website", sous le champ "Name", donner un nom à votre site web. Ensuite, créer sur "Create".
 
-Une fois créé, cliquez sur "Manage" à côté du nom de votre site web. Dans le champ "path", changez `/srv/new-website`, par `/srv/votredomaine.com`. Cliquez sur le bouton "Set".
+Une fois créé, cliquez sur "Manage" à côté du nom de votre site web. Dans le champ "path", changez `/srv/new-website`, par `/srv/votredomaine.com`. Cliquez sur le bouton "Set". Cliquez aussi sur "Create Directory"
 
 Ensuite, décocher la checkbox "Maintenance Mode". Appliquez vos changements en bas de page.
 
@@ -221,7 +226,8 @@ Comme d'habitude, c'est plus compliqué sur Windows que sur MAC.
 #### Pour MAC
 
 1. Tappez dans le terminal : `ssh-keygen -t rsa`. Vérifiez bien que vous n'êtes pas connecté à votre serveur. Cette opération s'effectue sur la machine client.
-2. Une fois la commande entrée, vous aurez quelques questions. On vous demandera ou stocker votre clé ssh. Par défaut, ce sera enregistré dans `/home/votrenomdutilisateur/.ssh/id_rsa)`
+2. Une fois la commande entrée, vous aurez quelques questions. On vous demandera ou stocker votre clé ssh. Par défaut, ce sera enregistré dans `/home/votrenomdutilisateur/.ssh/id_rsa)`.   
+**Notez que si vous ne changez pas le chemin, votre clé sera stockée dans un fichier caché. Vous devrez donc les rendre visible pour accéder au dossier. Ou vous pouvez simplement modifier le chemin de base**
 3. Vous pouvez décider d'entrer un mot de passe (passphrase). Ce n'est pas obligé. Bien sur c'est mieux, si une personne mal intentionnée arrive à avoir votre clé privée, elle ne sera pas en mesure de se connecter sans son mot de passe.
 4. Une fois l'opération terminée, vous aurez un message avec un motif étrange.
 5. Aller dans le dossier dans laquelle vous avez stocké vos clés. La clé publique s'appelle `id_rsa.pub` et la privée `id_rsa`.
@@ -237,7 +243,7 @@ Ensuite, tappez dans le terminal : `brew install ssh-copy-id`
 
 Une fois celà fait, commencez la copie de votre clé publique vers votre serveur avec la commande suivante : `ssh-copy-id nomdutilisateur@IPdevotreserveur`
 
-Vous devriez avoir un texte qui commence par `The authenticity of host...` qui confirme la copie de votre clé publique.
+Vous devriez avoir un texte qui confirme la copie de votre clé publique sur le serveur. Passez à Filezilla.
 
 #### Pour WINDOWS
 Je ne connais pas la méthode et je ne l'ai jamais testée. Je vous renvoie vers un très bon tutoriel sur le site de DigitalOcean. Si vous suivez les étapes, il ne devrait pas y avoir de problèmes.
@@ -249,7 +255,9 @@ Je ne connais pas la méthode et je ne l'ai jamais testée. Je vous renvoie vers
 - Ouvrez Filezilla.
 - Allez dans les paramètres.
 - Cliquez sur SFTP
-- Cliquez sur "Ajouter une clé" et selectionnez votre clé privée ssh. Filezilla peu vous demander de convertir votre clé, acceptez.
+- Cliquez sur "Ajouter une clé" et selectionnez votre clé privée ssh (ne pas sélectionner celle qui se termine par .pub). Filezilla peu vous demander de convertir votre clé, acceptez.
+
+*Note : Si vous n'arrivez pas à acceder au dossier parce qu'il est caché, vous pouvez ouvrir le dossier dans le finder et simplement faire glisser la clé sur FileZilla*
 
 ![](imgdo/capt9.png)
 
@@ -257,7 +265,8 @@ Je ne connais pas la méthode et je ne l'ai jamais testée. Je vous renvoie vers
 - Ajouter un nouveau site, dans "Hôte", indiquez votre nom de domaine ou l'adresse IP de votre serveur.
 - Indiquez le port n°22 (par défaut)
 - Sélectionnez le protocole "SFTP - SSH File Transfer Protocol"
-- Sélectionnez le type d'interaction interactif.
+- Sélectionnez le type d'interaction interactif. 
+- Dans "Identifiant" mettez le nom d'utilisateur de votre serveur. Ne mettez rien dans mot de passe.
 - Ensuite, cliquez sur "Connexion". Votre serveur peut vous demander un identifiant (votre pseudo) et un mot de passe (si vous avez mit un passphrame à votre clé SSH).
 - Une fois que vous êtes connecté, naviguer jusqu'au dossier de votre site web. Normalement : `/srv/ledossierdevotresite`.
 
@@ -323,6 +332,62 @@ Et voilà, vous pouvez a présent envoyer des mails sur Gmail, Yahoo… et vos d
 Tester à nouveau votre adresse email avec MailTester. Votre code à du augmenté si vous avez bien suivi les étapes. Si vous avez un score de 7/10, c'est tout bon ! Admirez le mien :
 
 ![](imgdo/capt12.png)
+
+---
+
+## Installer PHPMYADMIN sur votre Ajenti
+
+**ÉTAPE 1**  
+
+Pour installer Phpmyadmin vous devez d'abord enregistrer un sous-domaine sur votre serveur. Pour cela, répetez une étape précédente (comme pour le www ou pour le panel). Ajoutez-y la ligne `phpmyadmin`.
+
+![](imgdo/capt15.png)
+
+Ensuite, on va avoir besoins de créer un nouveau website pour phpmyadmin. Allez donc sur Ajenti. 
+
+Dans la barre latériale, cliquez sur "New website", donnez comme nom "phpMyAdmin" et cliquez sur "Create". Ensuite cliquez sur "Manage" à coté de la nouvelle ligne qui vient d'apparaitre.
+
+Dans le champ "path", changez `/srv/new-website`, par `/srv/phpMyAdmin`. Cliquez sur le bouton "Set". Cliquez aussi sur "Create Directory". **Appliquez vos changements.**
+
+Après, cliquez sur l'onglet en haut "Domain". Cliquez sur "add" et remplacer `example.com` par `phpmyadmin.votredomain.**`. **Appliquez vos changements.
+**
+Maintenant, allez sur l'onglet "Content". Dans le menu déroulant, choisissez `PHP FastCGI` et cliquez sur "Create". **Appliquez vos changements**.
+
+**ÉTAPE 2**
+
+Allez sur www.phpmyadmin.net/downloads et copier l'adresse du lien de la dernière version de Phpmyadmin au forma zip (c'est la dernière de la liste).
+
+- Dans l'onglet General, sur la configuration du site sur Ajenti, vous avez un champ "From URL". Coller y votre lien et cliquez sur download and unpack. Une fenêtre de terminal va s'ouvrir dans votre navigateur et va télécharger et dézipper votre fichier dans le dossier de votre site.
+
+
+**ÉTAPE 3**
+
+On va créer une base de donnée. Dans Ajenti, dans la section "Software", il y a un menu nommé "MySQL". Cliquez.
+
+En dessous de "database", cliquez sur "Create". Donnez un nom à votre base de donnée (peu importe).
+
+Dans la section "Users" cliquez sur "Create". 
+- Choisissez un username
+- Dans hostname, entrez `localhost`
+- Choisissez un password
+
+**Retenez l'username et le password vous en aurez besoins pour vous connecter à la base de donnée**
+
+**ÉTAPE 4**
+
+Connectez vous à PhpMyAdmin en allant à l'addresse : `phpmyadmin.votrenomdedomaine.**`
+
+*Notes : Ça ne fonctionne pas ? Il y a plusieurs raisons à cela. La premiere étant qu'il faut peut être attendre que votre hostname s'initialise. La deuxieme, il se peut que votre dézip de phpmyadmin ait créé un dossier contenant tous les fichiers. Il faut alors déplacer les fichiers pour les mettre à la racine de votre site phpmyadmin.*
+
+Pour ce faire vous pouvez vous rendre sur Ajenti, cliquer sur "File Manager". Ensuite, cliquer sur le dossier "`srv`", puis "`phpmyadmin`". Vous allez y trouver un dossier `phpMyAdmin-4.6.1` (ou autre version). Cliquez dessus.
+
+- Selectionnez tous les fichiers
+- Cliquez en haut sur "Cut". 
+- Retournez à la racine de phpmyadmin (en cliquant sur le nom de votre dossier sur le fil d'ariane).
+- Cliquez sur l'icone "Paste".
+
+Attendez un peu que l'opération se fasse. Rafraichissez et vous devriez voir vos fichiers qui se sont déplacés. 
+
 
 ---
 
