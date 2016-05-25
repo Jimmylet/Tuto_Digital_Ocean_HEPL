@@ -349,20 +349,25 @@ Dans la barre latériale, cliquez sur "New website", donnez comme nom "phpMyAdmi
 
 Dans le champ "path", changez `/srv/new-website`, par `/srv/phpMyAdmin`. Cliquez sur le bouton "Set". Cliquez aussi sur "Create Directory". **Appliquez vos changements.**
 
-Après, cliquez sur l'onglet en haut "Domain". Cliquez sur "add" et remplacer `example.com` par `phpmyadmin.votredomain.**`. **Appliquez vos changements.
-**
+Après, cliquez sur l'onglet en haut "Domain". Cliquez sur "add" et remplacer `example.com` par `phpmyadmin.votredomain.**`. Décocher aussi le "maintenance mode" 
+**Appliquez vos changements.**
+
 Maintenant, allez sur l'onglet "Content". Dans le menu déroulant, choisissez `PHP FastCGI` et cliquez sur "Create". **Appliquez vos changements**.
 
 **ÉTAPE 2**
 
+Connectez-vous en ssh à votre serveur et installer unzip `sudo apt-get install unzip`
+
 Allez sur www.phpmyadmin.net/downloads et copier l'adresse du lien de la dernière version de Phpmyadmin au forma zip (c'est la dernière de la liste).
 
-- Dans l'onglet General, sur la configuration du site sur Ajenti, vous avez un champ "From URL". Coller y votre lien et cliquez sur download and unpack. Une fenêtre de terminal va s'ouvrir dans votre navigateur et va télécharger et dézipper votre fichier dans le dossier de votre site.
+- Dans l'onglet General, sur la configuration du site sur Ajenti (phpmyadmin->manage), vous avez un champ "From URL". Coller y votre lien et cliquez sur download and unpack. Une fenêtre de terminal va s'ouvrir dans votre navigateur et va télécharger et dézipper votre fichier dans le dossier de votre site.
 
 
 **ÉTAPE 3**
 
 On va créer une base de donnée. Dans Ajenti, dans la section "Software", il y a un menu nommé "MySQL". Cliquez.
+
+*Note : Si vous avez mit un nom d'utilisateur et un mot de passe lors de l'installation de MySQL, il se peut que vous ayez une popup vous demandant un host, un nom d'utilisateur et un mot de passe. L'host est localhost. Et tappez-y le nom d'utilisateur et le mot de passe que vous aviez choisi. Si vous n'avez pas de popup, passez ) la suite*
 
 En dessous de "database", cliquez sur "Create". Donnez un nom à votre base de donnée (peu importe).
 
@@ -388,6 +393,20 @@ Pour ce faire vous pouvez vous rendre sur Ajenti, cliquer sur "File Manager". En
 
 Attendez un peu que l'opération se fasse. Rafraichissez et vous devriez voir vos fichiers qui se sont déplacés. 
 
+
+*NOTES : Pour vous connecter à PHPmyadmin vous pouvez utiliser l'user que vous avez définit. Cependant, pour créer des bases de donner il vous faut vous connecter en root.*
+
+Pour ce faire, connectez vous avec l'utilisateur root. Si vous ne lui avez pas donner de mot de passe, il va falloir lui en attribuer un maintenant.
+
+- Connectez vous à votre serveur `ssh nomdutilisateur@votreip`
+- Stoppez les serveurs mysql
+`sudo /etc/init.d/mysql stop`
+- Tappez cette commande `sudo mysqld --skip-grant-tables &`
+- Loggez-vous en root `mysql -u root mysql`
+- Mettez a jour votre mot de passe en changeant YOURNEWPASSWORD par votre mot de passe 
+`UPDATE user SET Password=PASSWORD('YOURNEWPASSWORD') WHERE User='root'; FLUSH PRIVILEGES; exit;`
+
+Voilà, vous pouvez vous connecter en root.
 
 ---
 
