@@ -410,8 +410,95 @@ Voilà, vous pouvez vous connecter en root.
 
 ---
 
-J’espère que ce tuto vous a aidé ! C’est un peu long, mais c’est efficace. Maintenant, reste plus qu’à y placer vos sites web. Petite remarque, Wordpress utilise de base Apache, et comme vous avez pu le voir, nous, c’est NGINX. 
 
-DigitalOcean a fait un bon tuto résumant l’installation de Wordpress sur Ajenti :
-https://www.digitalocean.com/community/tutorials/installing-wordpress-on-ajenti-v
+## Installer Wordpress sur un serveur Ajenti
 
+Normalement, à ce stade, vous avez déjà appris comment ajouter un site web et le configurer. Quand vous allez dans la barre latérale et que vous cliquez sur `website`, cliquez sur "Manage" à coté du nom de votre site web. Dans l'onglet "Advanced" **coller le code suivant et appliquez vos changements :**
+
+```
+# This order might seem weird - this is attempted to match last if rules below fail.
+location / {
+    try_files $uri $uri/ /index.php?$args;
+}
+
+# Add trailing slash to */wp-admin requests.
+rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+
+# Directives to send expires headers and turn off 404 error logging.
+location ~* ^.+\.(ogg|ogv|svg|svgz|eot|otf|woff|mp4|ttf|rss|atom|jpg|jpeg|gif|png|ico|zip|tgz|gz|rar|bz2|doc|xls|exe|ppt|tar|mid|midi|wav|bmp|rtf)$ {
+       access_log off; log_not_found off; expires max;
+}
+
+location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+}
+location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+}
+# Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac).
+# Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)
+location ~ /\. {
+    deny all;
+}
+# Deny access to any files with a .php extension in the uploads directory
+# Works in sub-directory installs and also in multisite network
+# Keep logging the requests to parse later (or to pass to firewall utilities such as fail2ban)
+location ~* /(?:uploads|files)/.*\.php$ {
+    deny all;
+}
+```
+
+Dans l'onglet "content", verifiez que dans le menu déroulant "PHP FastCGI" soit coché. Ensuite, cliquez sur "Create". Dans "Advanced", coller le code suivant dans la text-area "Custom configuration": 
+
+```
+try_files $uri =404;
+fastcgi_split_path_info ^(.+\.php)(/.+)$;
+```
+Appliquez vos changements.
+
+**Ouvrez PHPMYADMIN sur votre machine et exportez votre base de donnée wordpress**  
+
+Copiez tout le contenu et sauvegarder le dans un fichier avec l'extension `.sql`.
+
+Dans ce fichier, recherchez et remplacez toutes les adresses du style `http://localhost:8888.../dev` par l'adresse de votre site web. Par exemple, pour moi, c'est `http://letecheur.me`. 
+
+**Ouvrez PHPMYADMIN sur votre serveur**.  
+Créer une nouvelle base de donnée. Vous pouvez lui donner le même nom que votre ancienne base de donnée. Cliquez sur "Import" dans la barre de navigation. Choisissez votre fichier.  Cliquez sur "Go" pour lancer l'importation.
+
+**Modifier le fichier wp-config.php**
+
+A ce stade, votre base de donnée est sur votre serveur. Super ! Maintenant, comme nous avons travailler avec une base de donnée et surtout, un nom d'utilisateur et un mot de passe de base de donnée différent (celui de MAMP/WAMP/LAMP), nous allons avoir besoins de modifier.
+
+Allez à la racine de votre installation wordpress sur votre machine et ouvrez le fichier `wp-config.php`. 
+
+A la ligne `define('DB_NAME', '*nom de votre bdd*');` remplacer `nom de votre bdd` par le nom que vous avez donné à votre base de donnée sur votre serveur. 
+
+A la ligne `define('DB_USER', 'root');` remplacez root par le nom d'utilisateur mysql que vous avez entrez (il se peut que ça reste root).
+
+A la ligne `define('DB_USER', 'root');` remplacez root par le nom d'utilisateur mysql que vous avez entrez (il se peut que ça reste root).
+
+A la ligne `define('DB_PASSWORD', 'root');` remplacez root par le nom le mot de passe de votre base de donnée.
+
+---
+
+Maintenant, zippez votre site wordpress (le dossier dev).
+
+Allez dans "File Manager" qui se trouve dans la barre latérale. Ensuite, cliquez sur "srv", puis le nom de votre site web. Choisissez un fichier à uploader (prenez votre fichier dev.zip). Attendez la fin de l'upload.
+
+Une fois terminé, cliquez sur le petit bouton à droite du nom. Une pop-up apparait, cliquez sur "unpack". Une fenêtre terminal va s'ouvrir, c'est normal. Patientez.
+
+Supprimez votre fichier .zip en cochant la check-box à sa gauche et cliquez en haut sur "delete". Entrez dans votre fichier "dev", et faites comme on a déjà fait, selectionnez tout. Cliquez sur le ciseau pour couper. Revenez à la racine de votre dossier portfolio et coller. Attends quelques secondes puis raffraichissez la page en cliquant sur "srv" puis revenez dans le dossier. Ensuite, supprimez votre fichier dev.
+
+**WORDPRESS EST NORMALEMENT INSTALLÉ, IL NE RESTE PLUS QU'UNE SEULE ÉTAPE**
+
+Rendez-vous sur votre nom de domaine et normalement votre website apparait ! Vous pouvez vous y connecter en mettant à la fin de votre nom de domaine "wp-admin"
+
+---
+Vous avez des bugs sur votre wordpress ? Ça peut venir de n'importe où.
+
+Si des images ne s'affichent pas, vérifiez bien que vos fichiers sont bien écrit en minuscules. 
+
+Certaines ressources ne fonctionnent pas mais le lien est correct ? Il peut être nécessaire de modifier les droits du dossier de votre site web en 775. Pour ce faire, vous pouvez aller sur ajenti, dans "FileManager" aller vers votre site web. A droite du dossier de votre portfolio, cliquez sur le bouton et cochez toutes les cases à l'exception de "Others W". Cliquez sur "Set recursively".
