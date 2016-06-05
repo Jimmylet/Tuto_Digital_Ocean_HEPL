@@ -504,3 +504,6 @@ Vous avez des bugs sur votre wordpress ? Ça peut venir de n'importe où.
 - Certaines ressources ne fonctionnent pas mais le lien est correct ? Il peut être nécessaire de modifier les droits du dossier de votre site web en 775. Pour ce faire, vous pouvez aller sur ajenti, dans "FileManager" aller vers votre site web. A droite du dossier de votre portfolio, cliquez sur le bouton et cochez toutes les cases à l'exception de "Others W". Cliquez sur "Set recursively".
 
 - Si vous avez un bug pour uploader des images, ajoutez les droits "777" à votre dossier upload dans wp-content.
+
+- Vous n'arrivez pas à modifier vos images (les recadrer par exemple) connectez-vous à votre ssh et tappez la commande suivante `apt-get install php5-gd`. Ensuite, relancez nginx `service nginx restart`.
+
