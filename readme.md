@@ -256,13 +256,13 @@ Vous devriez avoir un texte qui confirme la copie de votre clé publique sur le 
 4. Une fois la clé généré, dans **Key Comment** inscrivez le nom que vous voulez donnez à votre clé pour pouvoir mieux la retrouver.
 Vous pouvez si vous le voulez, mettre un mot de passe pour la clé dans la zone **Key passphare**, mais ce n'est pas obligatoire.
 
-5.Ensuite cliquez sur **Save Public Key** et choississez l'endroit et le nom de votre fichier.
+5. Ensuite cliquez sur **Save Public Key** et choississez l'endroit et le nom de votre fichier.
 
-6.Toujours dans PuttyGen, vous avez un un champ de texte marqué par **Public Key for pasting...**, sélectionnez-tout et copiez-le.
+6. Toujours dans PuttyGen, vous avez un un champ de texte marqué par **Public Key for pasting...**, sélectionnez-tout et copiez-le.
 
-7.Retournez sur le programme Putty et tapez la commande : `sudo apt-get install vim`.
+7. Retournez sur le programme Putty et tapez la commande : `sudo apt-get install vim`.
 
-8.Ensuite tapez : `sudo vim ~ / .ssh / authorized_keys` et faites Enter.
+8. Ensuite tapez : `sudo vim ~ / .ssh / authorized_keys` et faites Enter.
 
 9. Une fois dans le fichier, tapez **i** pour insérer puis clique-droit de votre souris pour coller le code de clé que vous aviez copié auparavant.
 
@@ -527,3 +527,9 @@ Vous avez des bugs sur votre wordpress ? Ça peut venir de n'importe où.
 
 - Vous n'arrivez pas à modifier vos images (les recadrer par exemple) connectez-vous à votre ssh et tappez la commande suivante `apt-get install php5-gd`. Ensuite, relancez nginx `service nginx restart`.
 
+---
+## Remerciements
+
+- Merci à moi même.
+- Merci à [Anthony2511](https://www.github.com/Anthony2511) pour les précisions concernant Putty pour Windows.
+- - Merci à [Dylan](https://www.github.com/dylanschirino) Dylan Schirino pour son test sur la version Mac.
