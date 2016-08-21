@@ -246,9 +246,29 @@ Une fois cela fait, commencez la copie de votre clé publique vers votre serveur
 Vous devriez avoir un texte qui confirme la copie de votre clé publique sur le serveur. Passez à Filezilla.
 
 #### Pour WINDOWS
-Je ne connais pas la méthode et je ne l’ai jamais testée. Je vous renvoie vers un très bon tutoriel sur le site de DigitalOcean. Si vous suivez les étapes, il ne devrait pas y avoir de problèmes.
 
-[Vers le tutoriel](https://www.digitalocean.com/community/tutorials/how-to-create-ssh-keys-with-putty-to-connect-to-a-vps)
+1. Télécharger le programme [PuttyGen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html) qui permet de générer des clés SSH compatibles avec Putty.
+
+2. Une fois le programme installé, double-cliquer sur le .exe.
+
+3. Choisissez comme type de clés **SSH-2 RSA** et pour le nombre de bits, mettez **2048** puis faites générer et ensuite faites déplacer le pointeur de votre souris pour faire progresser la barre de progression.
+
+4. Une fois la clé généré, dans **Key Comment** inscrivez le nom que vous voulez donnez à votre clé pour pouvoir mieux la retrouver.
+Vous pouvez si vous le voulez, mettre un mot de passe pour la clé dans la zone **Key passphare**, mais ce n'est pas obligatoire.
+
+5.Ensuite cliquez sur **Save Public Key** et choississez l'endroit et le nom de votre fichier.
+
+6.Toujours dans PuttyGen, vous avez un un champ de texte marqué par **Public Key for pasting...**, sélectionnez-tout et copiez-le.
+
+7.Retournez sur le programme Putty et tapez la commande : `sudo apt-get install vim`.
+
+8.Ensuite tapez : `sudo vim ~ / .ssh / authorized_keys` et faites Enter.
+
+9. Une fois dans le fichier, tapez **i** pour insérer puis clique-droit de votre souris pour coller le code de clé que vous aviez copié auparavant.
+
+10. Pour finir tapez les touches dans cet ordre : **Esc**, **:**, **w**, **q**, **Enter**.
+
+Et voila votre clé SSH est générée.
 
 ---
 
