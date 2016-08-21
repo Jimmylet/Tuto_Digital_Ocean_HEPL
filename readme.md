@@ -1,8 +1,8 @@
 # Créer un serveur web avec Digital Ocean
 
-Grâce à l’offre étudiants de chez Github, nous disposons d’un bonus de 50\$ + 10\$, soit 60\$ sur DigitalOcean.com. Ce qui équivaut à un an d’hébergement gratuit. Ce serait dommage de s’en priver.
+Grâce à l’offre étudiants de chez Github, nous disposons d’un bonus de 50$ + 10$, soit 60$ sur DigitalOcean.com. Ce qui équivaut à un an d’hébergement gratuit. Ce serait dommage de s’en priver.
 
-Le problème est qu’il s’agit d’un VPS ( *virtual private server* ou serveur dédié virtuel ). En résumé, c’est une machine virtuelle sur laquelle vous installez ce que vous voulez. Et qui dit serveur privé, dit configuration complète et totale. Vous allez devoir créer vos machines virtuelles, configurer vos hostsnames, installer les bons packages, installer votre serveur web, votre serveur mail, etc. J’ai décidé de faire un récapitulatif de l’installation pour m’aider et je vous la partage. Alors pas de panique, ce n’est pas compliqué ! 
+Le « problème » est qu’il s’agit d’un VPS ( *virtual private server* ou serveur dédié virtuel ). En résumé, c’est une machine virtuelle sur laquelle vous installez ce que vous voulez. Et qui dit serveur privé, dit configuration complète et totale. Vous allez devoir créer vos machines virtuelles, configurer vos hostsnames, installer les bons packages, installer votre serveur web, votre serveur mail, etc. J’ai décidé de faire un récapitulatif de l’installation pour m’aider et je vous la partage. Alors pas de panique, ce n’est pas compliqué ! 
 
 ## Étape 1 - Acheter son nom de domaine.
 
@@ -25,13 +25,13 @@ Ensuite, passez à la caisse et payez-les quelques euros pour finaliser votre co
 
 Inscrivez-vous sur DigitalOcean. La première chose à faire une fois inscrite est d’y inscrire une carte de crédit (ils ne perdent pas de temps!) ou son compte PayPal. Personnellement, j’ai choisi la méthode carte de crédit. Elle ne sera **PAS** débitée. Ils vont juste faire une vérification de 0,00€ pour voir si elle est active. Attention, vous allez peut-être recevoir un appel de votre banque pour demander si c’est vous qui avez réalisé la transaction (car en Belgique, les transactions sur carte bancaire d’un montant de 0€ sont interdites). Avec PayPal, c’est sans doute plus simple, mais vous êtes obligé de charger votre compte d’au moins 5$, à vous de voir.
 
-Une fois votre carte validée, dans « Promo code » mettez-y le coupon GitHub que vous avez reçu avec votre student education pack concernant DigitalOcean. Et boum, **50\$ gratos** ! Et comme à l’inscription, on reçoit 10\$, ça fait 60\$ en tout !
+Une fois votre carte validée, dans « Promo code » mettez-y le coupon GitHub que vous avez reçu avec votre student education pack concernant DigitalOcean. Et boum, **50$ gratos** ! Et comme à l’inscription, on reçoit 10$, ça fait 60$ en tout !
 
 ## Étape 3 - Créer sa machine virtuelle
 
 Sur DigitalOcean, les machines virtuelles s’appellent des « Droplets ». En haut à droite, cliquer sur « Create a droplet ».
 
-1. Choisissez votre distribution. Ce tutoriel se base sur Ubuntu, donc sélectionnez-le.
+1. Choisissez votre distribution. Ce tutoriel se base sur Ubuntu, donc sélectionnez-le. **Attention, ce tutoriel est basé sur la version 14, ne choisissez pas une version supérieure ou vous devrez faire quelques ajustement qui ne sont pas décrit dans ce tutoriel.**
 2. Choisissez une taille. Pour un portfolio, la plus petite suffit (celle à 5$/m). 20Gb de SSD est amplement suffisant. Si dans le futur vous avez besoin de plus de performances, vous pourrez adapter votre serveur quand vous le voudrez.
 3. Choisissez un datacenter proche de chez vous. Comme le portfolio sera en principe le plus souvent visité par des clients/professeurs/employeurs, il y a des chances pour qu’ils habitent pas loin de la Belgique. Perso, j’ai choisi Amsterdam.
 4. Ajouter des options si vous le voulez. Certaines sont payantes. Perso, je n’en ai pas pris.
